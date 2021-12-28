@@ -1,0 +1,33 @@
+@charset "UTF-8";
+ /* --- 外枠の定義 ---------------------------------------------*/
+ .evalbox {
+
+    margin         : left;                 /* サンプル用 中央寄せ */
+    box-sizing     : border-box;           /* 罫線も含む長さ      */
+    background     : rgba(255, 255, 255, 1);                 /* BOXの背景色         */
+    border         : 0px solid #666;       /* 枠線の指定          */
+    width          : 460px;                /* BOXの幅             */
+    max-height     : 210px;                /* BOXの高さ           */
+    animation: boxAnime 10s linear infinite alternate;
+
+    /* ▼ FlexBoxの定義 */
+    display        : flex;                 /* FlexBox定義         */
+    justify-content: space-around;         /* 揃えの定義          */
+    flex-wrap      : wrap;                 /* 折り返し定義        */
+  }
+
+   /* --- 個別のBOXの定義 --------------------------------------- */
+  .evalbox div {
+    text-align: center;
+    box-sizing     : border-box;           /* 罫線も含む長さ      */
+    background     : #f4f5f5;              /* BOXの背景色         */
+    border         : 2px solid #238eff;    /* 枠線の指定          */
+    width          : 40px;                 /* サンプルBOXの幅     */
+    height         : 60px;                 /* サンプルBOXの幅     */
+    margin         : 2px;                  /* サンプルBOXの間     */
+  }
+
+    .evalbox input[type="radio"]{
+        width: 25px;
+        height: 25px;
+    }

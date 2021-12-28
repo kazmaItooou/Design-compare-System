@@ -1,0 +1,241 @@
+@charset "UTF-8";
+
+/* -- 以下は削除不可 変更は可能です -- */
+#footer #csslink a,
+#footer #csslink a:hover { text-decoration: none; }
+
+/* -- 変更可能部分 配置とサイズ -- */
+#footer #csslink {
+  text-align: right;
+  font-size: 80%;
+  margin: 0;
+  padding: 0 20px 5px 0;
+}
+
+/* -- 変更可能部分 色 -- */
+#footer #csslink,
+#footer #csslink a,
+#footer #csslink a:hover { color: #000000; }
+
+#footer #csslink,
+#footer #csslink a,
+
+/*----------------------------------------------------------
+  レイアウト関係
+----------------------------------------------------------*/
+/*---------------------------------フォントサイズなど*/
+body {
+  text-align: center;
+  font-size: 100%;
+  font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3" sans-serif;
+  margin: 0;
+  padding: 0;
+}
+/*追加*/
+blockquote {
+    position: relative;
+    padding: 7px 16px;
+    box-sizing: border-box;
+    font-style: italic;
+    color: #585858;
+    border: solid 3px #585858;
+}
+blockquote:before{
+    display: inline-block;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    content: "\f10d";
+    font-family: FontAwesome;
+    background: #585858;
+    color: #FFF;
+    font-size: 22px;
+}
+
+blockquote:after{
+    display: inline-block;
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    content: "\f10e";
+    font-family: FontAwesome;
+    background: #585858;
+    color: #FFF;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+blockquote p {
+    padding: 0;
+    margin: 10px 0;
+    line-height: 1.7;
+}
+
+blockquote cite {
+    display: block;
+    text-align: right;
+    color: #888888;
+    font-size: 0.9em;
+}
+/*---------------------------------ページ全体の横幅*/
+#wrapper {
+  text-align: left;
+  width: 680px;
+  margin: 0px auto 0px auto;
+  padding: 0px 0px 0px 0px;
+  border: 0px;
+}
+
+/*---------------------------------ヘッダー部分*/
+#header {
+  margin: 0px 0px 0px 0px;
+  padding: 10px 20px 5px 20px;
+  background-color: #e28561;
+  color: #ffffff;
+}
+/*---------------------------------問題部分*/
+#box5 {
+    text-align: center;
+    border: double 5px #4ec4d3;
+    font-size: 16px;
+}
+#box5 p {
+    margin: 0;
+    padding: 0;
+}
+/*---------------------------------問題数部分*/
+#qAmount {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    font-size: 140%;
+    font-family: "OCRB";
+  }
+/*---------------------------------メニュー部分*/
+#munu {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+/*---------------------------------コンテンツ部分*/
+#contents {
+  margin: 30px 70px 90px 80px;
+  padding: 0px 0px 0px 0px;
+}
+/*---------------------------------問題選択肢部分*/
+#selects{
+    text-align: center;
+  }
+/*---------------------------------コンテンツ部分*/
+#contents-nextQ {
+    margin: 40px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+  }
+
+/*---------------------------------フッター部分*/
+#footer {
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  color: #000000;
+}
+
+/*----------------------------------------------------------
+  ヘッダー内の指定
+----------------------------------------------------------*/
+
+/* -- 見出し -- */
+h1 {
+  font-size: 150%;
+  margin: 0px 0px 10px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+/* -- 文字 -- */
+p {
+  margin: 0px 0px 0.5em 0px;
+  padding: 0px;
+  line-height: 1.5em;
+}
+
+/* -- リスト -- */
+#contents ul { }
+
+#contents ol { }
+
+#contents li { }
+
+/*----------------------------------------------------------
+ボタンデザイン
+----------------------------------------------------------*/
+
+/*まずはお決まりのボックスサイズ算出をborer-boxに */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 100%;/*rem算出をしやすくするために*/
+}
+
+.nextquestion,
+input.btn{
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem 2.5rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+.btn--orange,
+input.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.btn--orange:hover,
+input.btn--orange:hover {
+  color: #fff;
+  background: #b84e03;
+}
+.btn--shadow,
+input.btn--shadow {
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+}
+/*----------------------------------------------------------
+  著作権
+----------------------------------------------------------*/
+#footer p {
+  margin: 0px 0px 0px 0px;
+  padding: 0.5em 0 0.5em 0;
+}

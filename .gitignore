@@ -1,0 +1,27 @@
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+
+#収集した情報
+public/MonitorAnser/enquete/badLayout/*.json
+public/MonitorAnser/enquete/basicLayout/*.json
+public/MonitorAnser/enquete/before/*.json
+public/MonitorAnser/AnserBadLayout/*.json
+public/MonitorAnser/AnserBasicLayout/*.json
+
+#monndai
+public/questions

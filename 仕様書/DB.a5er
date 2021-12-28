@@ -1,0 +1,229 @@
+﻿# A5:ER FORMAT:15
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright © 2007 m.matsubara
+# A5:SQL Mk-2 Version 2.16.1 Copyright © 1997 - 2021 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",7,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=7
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=6
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSTypeName=Oracle Database
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=0
+ShowTag=1
+ShowCommonAttributes=0
+
+[Entity]
+PName=bad_layout_aq
+LName=bad_layout_aq
+Comment=
+TableOption=
+Page=MAIN
+Left=-150
+Top=100
+Field="one time トークン","token","char(255)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="最も目を引く要素","striking_symbol","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="集中のしやすさ","usability_num","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="デザインの良いと思った点","positive_impression","text","NOT NULL",,"","",$FFFFFFFF,""
+Field="デザインの悪いと思った点","negative_impression","text","NOT NULL",,"","",$FFFFFFFF,""
+Field="その他感想","other_impression","text","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20211008121718
+Position="MAIN",-150,100
+ZOrder=-1
+
+[Entity]
+PName=basic_layout_aq
+LName=basic_layout_aq
+Comment=
+TableOption=
+Page=MAIN
+Left=1200
+Top=100
+Field="one time トークン","token","char(255)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="最も目を引く要素","striking_symbol","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="集中のしやすさ","usability_num","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="デザインの良いと思った点","positive_impression","text","NOT NULL",,"","",$FFFFFFFF,""
+Field="デザインの悪いと思った点","negative_impression","text","NOT NULL",,"","",$FFFFFFFF,""
+Field="その他感想","other_impression","text","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20211008121803
+Position="MAIN",1200,100
+ZOrder=-2
+
+[Entity]
+PName=before_aq
+LName=before_aq
+Comment=
+TableOption=
+Page=MAIN
+Left=550
+Top=100
+Field="学籍番号","student_id","char(255)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="one time トークン","token","char(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="メールアドレス","e-mail","char(255)",,,"","",$FFFFFFFF,""
+Field="学年（5はその他）","grade","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="情報処理技術者学習状況","exam_state","char(255)","NOT NULL",,"","",$FFFFFFFF,""
+Index=before_aq_token_unique=2,token
+Index=before_aq_e_mail_unique=2,e-mail
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20210930143535
+Position="MAIN",550,100
+ZOrder=-3
+
+[Entity]
+PName=test_result
+LName=test_result
+Comment=
+TableOption=
+Page=MAIN
+Left=550
+Top=350
+Field="one time トークン","token","char(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="使用レイアウト","layout","char(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="問題パターン","qpat","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="問題番号","qnum","int(11)","NOT NULL",,"","",$FFFFFFFF,""
+Field="正答か否か(1なら正答)","iscorrect","tinyint(1)","NOT NULL",,"","",$FFFFFFFF,""
+Field="回答に掛かった時間/s","time_required","double","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20211008145030
+Position="MAIN",550,350
+ZOrder=-4
+
+[Relation]
+Entity1=before_aq
+Entity2=test_result
+RelationType1=2
+RelationType2=4
+Fields1=token
+Fields2=token
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1350,5614,1275,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20210930151347
+LineMode=0
+Bar1=135
+Bar2=561
+Bar3=128
+TermPos1=R
+TermPos2=R
+ZOrder=-7
+
+[Relation]
+Entity1=before_aq
+Entity2=basic_layout_aq
+RelationType1=2
+RelationType2=2
+Fields1=token
+Fields2=token
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1084,9500,903,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20210930144103
+LineMode=0
+Bar1=108
+Bar2=950
+Bar3=90
+TermPos1=R
+TermPos2=R
+ZOrder=-6
+
+[Relation]
+Entity1=before_aq
+Entity2=bad_layout_aq
+RelationType1=2
+RelationType2=2
+Fields1=token
+Fields2=token
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1084,6473,903,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20210930144024
+LineMode=0
+Bar1=108
+Bar2=647
+Bar3=90
+TermPos1=R
+TermPos2=R
+ZOrder=-5
+
+[Entity]
+PName=end_aq
+LName=end_aq
+Comment=
+TableOption=
+Page=Main
+Left=1200
+Top=300
+Field="one time トークン","token","char(255)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="良いと思ったレイアウト\q","selected_layout","char(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="選択理由","reason","text",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20211008132542
+Position="Main",1200,300
+ZOrder=0
+
+[Relation]
+Entity1=before_aq
+Entity2=end_aq
+RelationType1=2
+RelationType2=2
+Fields1=token
+Fields2=token
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3224,6776,1959,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20211008121946
+LineMode=0
+Bar1=322
+Bar2=678
+Bar3=196
+TermPos1=R
+TermPos2=R
+ZOrder=1

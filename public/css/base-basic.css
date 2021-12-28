@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+/*----------------------------------------------------------
+  レイアウト関係
+----------------------------------------------------------*/
+
+/*---------------------------------フォントサイズなど*/
+body {
+  text-align: center;
+  font-size: 100%;
+  font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3" sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #d8d8d8;
+}
+
+/*---------------------------------ページ全体の横幅*/
+#wrapper {
+  text-align: left;
+  width: 680px;
+  margin: 0px auto 0px auto;
+  padding: 0px 0px 0px 0px;
+  background-color: #F2F2F2;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px, rgba(0, 0, 0, 0.24) 0px 2px 4px;
+}
+
+/*---------------------------------ヘッダー部分*/
+#header {
+  margin: 0px 0px 0px 0px;
+  padding: 10px 20px 5px 20px;
+  background-color: #1f85f3;
+  color: #ffffff;
+  box-shadow: 1px solid #e2e3e4;
+}
+/*---------------------------------問題数部分*/
+#qAmount {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    text-align: right;
+    font-size: 140%;
+    font-family: "OCRB";
+    color: #1f2b37;
+  }
+/*---------------------------------メニュー部分*/
+#munu {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+/*---------------------------------コンテンツ部分*/
+#contents {
+  margin: 30px 50px 90px 50px;
+  padding: 0px 0px 0px 0px;
+}
+/*---------------------------------問題選択肢部分*/
+#selects{
+  }
+/*---------------------------------コンテンツ部分*/
+#contents-nextQ {
+    margin: 40px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+  }
+
+/*---------------------------------フッター部分*/
+#footer {
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: #1f85f3;
+
+  color: #ffffff;
+}
+
+/*----------------------------------------------------------
+  ヘッダー内の指定
+----------------------------------------------------------*/
+
+/* -- 見出し -- */
+h1 {
+  font-size: 150%;
+  margin: 0px 0px 10px 0px;
+  padding: 0px 0px 0px 0px;
+  color: #1f2b37;
+
+}
+
+
+
+/* -- 文字 -- */
+p {
+  margin: 0px 0px 0.5em 0px;
+  padding: 0px;
+  line-height: 1.5em;
+}
+/*----------------------------------------------------------
+問題部分
+----------------------------------------------------------*/
+#box5 {
+    text-align: center;
+    padding: 13px 15px 15px 13px;
+    background-color: #e9e9e900;
+    color: #372c1f;
+    font-size: 16px;
+    border: 2px solid #000000;
+    border-radius: 0.3rem;
+}
+#box5 p {
+    margin: 0;
+    padding: 0;
+}
+
+/*----------------------------------------------------------
+問題部分
+----------------------------------------------------------*/
+#eliminateMethod-exposition {
+    padding: 13px 15px 15px 13px;
+    color: #81786d;
+    font-size: 90%;
+}
+/*----------------------------------------------------------
+消去法ボタンデザイン
+----------------------------------------------------------*/
+.eliminateMethod-button {
+
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 32px;
+    min-width: 16px;
+    margin: 1px;
+    color: #1f2b37;
+    background-color: #1f85f3;
+    border-radius: 0.2rem;
+    border: 0px solid #e2e3e4;
+    outline:0;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px, rgba(0, 0, 0, 0.24) 0px 2px 4px;
+
+    position   : relative;                /* 指定した分だけ相対的に移動 */
+}
+.eliminateMethod-button:hover {
+    outline:0;
+    background-color: #1a73d3;
+}
+.eliminateMethod-button:focus {
+    outline:0;
+    background-color: #1a73d3;
+}
+
+/*----------------------------------------------------------
+進むボタンデザイン
+----------------------------------------------------------*/
+/*まずはお決まりのボックスサイズ算出をborer-boxに */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 100%;/*rem算出をしやすくするために*/
+}
+
+.nextquestion,
+input.btn{
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem 2.5rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border: 0px solid #e2e3e4;
+  border-radius: 0.2rem;
+}
+
+.btn--orange,
+input.btn--orange {
+  color: #372c1f;
+  background-color: #e68520;
+}
+.btn--orange:hover,
+input.btn--orange:hover {
+  color: #372c1f;
+  background: #c0701a;
+}
+.btn--shadow,
+input.btn--shadow {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px, rgba(0, 0, 0, 0.24) 0px 2px 4px;
+}
+/* -- footer -- */
+#footer  {
+  color: #1f2b37;
+
+}
+/*----------------------------------------------------------
+baru0nn
+----------------------------------------------------------*/
+
+.balloonoya {
+    position   : relative;                /* 指定した分だけ相対的に移動 */
+  }
+  .balloonoya:hover .balloon {
+    display: inline;                /* インライン要素として表示 */
+  }
+  .balloon {
+    position   : absolute;                /* 親要素を基準 */
+    display: none;                        /* 要素を非表示 */
+    padding: 2px;                         /* テキストの前後の余白 */
+    background-color: rgba(102, 102, 255, 0.50);       /* 背景色（透明度） */
+    width:180px;                          /* 吹き出し全体の幅 */
+    left : -1%;                           /* 表示位置 */
+    font-size: 80%;                       /* 文字サイズ */
+  }
+  .balloon:after{
+    border-left: 12px solid rgba(102, 102, 255, 0.50);   /* 吹き出し口の幅・色 */
+    border-top: 10px solid transparent;     /* 吹き出し口の高さ１／２ */
+    border-bottom: 10px solid transparent;  /* 吹き出し口の高さ１／２ */
+    right: -12px;                           /* 吹き出し口の位置調整 */
+    top: 5%;                                /* 吹き出し口の縦位置 */
+    content: "";                       /* コンテンツの挿入 */
+    position: absolute;                /* 親要素を基準 */
+  }

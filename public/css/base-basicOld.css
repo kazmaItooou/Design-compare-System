@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+/*----------------------------------------------------------
+  レイアウト関係
+----------------------------------------------------------*/
+
+/*---------------------------------フォントサイズなど*/
+body {
+  text-align: center;
+  font-size: 100%;
+  font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3" sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/*---------------------------------ページ全体の横幅*/
+#wrapper {
+  text-align: left;
+  width: 680px;
+  margin: 0px auto 0px auto;
+  padding: 0px 0px 0px 0px;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px, rgba(0, 0, 0, 0.24) 0px 2px 4px;
+}
+
+/*---------------------------------ヘッダー部分*/
+#header {
+  margin: 0px 0px 0px 0px;
+  padding: 10px 20px 5px 20px;
+  background-color: #238eff;
+  color: #ffffff;
+  box-shadow: 1px solid #e2e3e4;
+}
+/*---------------------------------問題数部分*/
+#qAmount {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    text-align: right;
+    font-size: 140%;
+    font-family: "OCRB";
+    color: #1f2b37;
+  }
+/*---------------------------------メニュー部分*/
+#munu {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+/*---------------------------------コンテンツ部分*/
+#contents {
+  margin: 30px 70px 90px 80px;
+  padding: 0px 0px 0px 0px;
+}
+/*---------------------------------問題選択肢部分*/
+#selects{
+  }
+/*---------------------------------コンテンツ部分*/
+#contents-nextQ {
+    margin: 40px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+  }
+
+/*---------------------------------フッター部分*/
+#footer {
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: #238eff;
+  color: #ffffff;
+}
+
+/*----------------------------------------------------------
+  ヘッダー内の指定
+----------------------------------------------------------*/
+
+/* -- 見出し -- */
+h1 {
+  font-size: 150%;
+  margin: 0px 0px 10px 0px;
+  padding: 0px 0px 0px 0px;
+  color: #1f2b37;
+
+}
+
+
+
+/* -- 文字 -- */
+p {
+  margin: 0px 0px 0.5em 0px;
+  padding: 0px;
+  line-height: 1.5em;
+}
+
+/*----------------------------------------------------------
+消去法ボタンデザイン
+----------------------------------------------------------*/
+.eliminateMethod-button {
+
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 32px;
+    min-width: 16px;
+    margin: 1px;
+    color: #1f2b37;
+    background-color: #3999ff;
+    border-radius: 0.2rem;
+    border: 0px solid #e2e3e4;
+    outline:0;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px, rgba(0, 0, 0, 0.24) 0px 2px 4px;
+}
+.eliminateMethod-button:hover,
+.eliminateMethod-button:focus {
+    outline:0;
+    background-color: #238eff;
+}
+/*----------------------------------------------------------
+進むボタンデザイン
+----------------------------------------------------------*/
+/*まずはお決まりのボックスサイズ算出をborer-boxに */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 100%;/*rem算出をしやすくするために*/
+}
+
+.nextquestion,
+input.btn{
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem 2.5rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border: 0px solid #e2e3e4;
+  border-radius: 0.2rem;
+}
+
+.btn--orange,
+input.btn--orange {
+  color: #372c1f;
+  background-color: #ff9423;
+}
+.btn--orange:hover,
+input.btn--orange:hover {
+  color: #372c1f;
+  background: #e68520;
+}
+.btn--shadow,
+input.btn--shadow {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px, rgba(0, 0, 0, 0.24) 0px 2px 4px;
+}
+/* -- footer -- */
+#footer  {
+  color: #1f2b37;
+
+}
