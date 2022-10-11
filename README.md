@@ -2,6 +2,9 @@
  
 Laravel 6.20.36
 
+## アブストラクト
+
+https://github.com/kazmaItooou/Design-compare-System/blob/main/ep18009%E4%BC%8A%E8%97%A4%E5%92%8C%E7%9C%9F%E3%82%A2%E3%83%96%E3%82%B9%E3%83%88.pdf
 # 入れ方
 前提として，サーバにUbuntu 20.04.3 LTS がインストールされている必要がある．
 
