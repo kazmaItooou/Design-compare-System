@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    AqController
+    AqController,
+    QuestionController,
+    layoutAqController,
+    endAqController,
+    LayoutViewController
 };
 
 /*

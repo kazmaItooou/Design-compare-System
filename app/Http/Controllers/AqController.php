@@ -5,29 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use App\Models\BeforeAq;
 
 class AqController extends Controller
 {
+    private const UA_LIST = ['iPhone', 'iPad', 'iPod', 'Android'];
     // Indexページの表示
-    public function index()
+    public function index(Request $request)
     {
         //ユーザーエージェントを取得
-        $ua = $_SERVER['HTTP_USER_AGENT'];
-        //スマホと判定する文字リスト
-        $ua_list = array('iPhone', 'iPad', 'iPod', 'Android');
+        $ua = $request->header('User-Agent');
         $isPhone = false;
-        foreach ($ua_list as $ua_smt) {
-            //ユーザーエージェントに文字リストの単語を含む場合はTRUE、それ以外はFALSE
-            if (strpos($ua, $ua_smt) !== false) {
-                $isPhone  = true;
+        foreach (self::UA_LIST as $ua_smt) {
+            if (strpos($ua, $ua_smt)) {
+                $isPhone = true;
+                break;
             }
         }
         $viewName = '事前アンケート';
-        if ($isPhone == true) {
+        if ($isPhone) {
             $viewName = 'ユーザ環境確認';
         }
         return view($viewName);
     }
+
     public function userAgentPhone()
     {
         return view('事前アンケート');
@@ -35,44 +36,36 @@ class AqController extends Controller
     // 投稿された内容を表示するページ
 
     // アンケート結果の処理
-    public function aqProcessing()
+    public function aqProcessing(Request $request)
     {
         // 投稿内容の受け取って変数に入れる
         $token = $this->get_csrf_token();
 
-        $ua = $_SERVER['HTTP_USER_AGENT'];
-        //スマホと判定する文字リスト
-        $ua_list = array('iPhone', 'iPad', 'iPod', 'Android');
+        $ua = $request->header('User-Agent');
         $isPhone = false;
-        foreach ($ua_list as $ua_smt) {
-            //ユーザーエージェントに文字リストの単語を含む場合はTRUE、それ以外はFALSE
-            if (strpos($ua, $ua_smt) !== false) {
+        foreach (self::UA_LIST as $ua_smt) {
+            if (strpos($ua, $ua_smt)) {
                 $isPhone  = true;
+                break;
             }
         }
-
         /*
         トークンとともに事前アンケートをjsonに登録
         */
-        $studentNumber = $_POST['studentNumber'];
-        $grade = $_POST['grade'];
-        $ipass = $_POST['ipass'];
-        $AqDataArray = array(
+        $studentNumber = $request->input('studentNumber');
+        $grade = $request->input('grade');
+        $ipass = $request->input('ipass');
+        $AqDataArray = [
             "studentNumber" => $studentNumber,
             "grade" => (int)$grade,
             "ipass" => $ipass,
             "isPhone" => $isPhone,
-        );
+        ];
         $path = "./MonitorAnser/enquete/before/" . $token . ".json";
-        $jsonData = json_encode($AqDataArray);
-        //file_put_contents($path, $jsonData);
-        Storage::put($path, $jsonData);
-
-        $selectFunc = 'aqProcesed';
+        Storage::put($path, json_encode($AqDataArray));
         //学籍番号がすでにアンケートに回答していないかを確認
-        $isCorected = (DB::table('before_aq')->where('student_id', $studentNumber)->count() >=1) ;
-        // 変数をビューに渡す
-        return redirect()->action('AqController@aqProcesed', compact('token','isCorected'));
+        $isCorected = (BeforeAq::where('student_id', $studentNumber)->count() >= 1) ;
+        return redirect()->action([AqController::class,'aqProcesed'], compact('token','isCorected'));
     }
 
     // 処理後、問題開始画面を出す
@@ -83,10 +76,9 @@ class AqController extends Controller
 
         //なければ作成
         if (!Storage::exists($path)) {
-            $testerNumArray = array(
+            $jsonData = json_encode([
                 "firstLayout" => "bad",
-            );
-            $jsonData = json_encode($testerNumArray);
+            ]);
             Storage::put($path, $jsonData);
         }
 
