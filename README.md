@@ -1,193 +1,66 @@
-# 卒業研究　デザイン比較システム
- 
-Laravel 6.20.36
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-## アブストラクト
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-https://github.com/kazmaItooou/Design-compare-System/blob/main/ep18009%E4%BC%8A%E8%97%A4%E5%92%8C%E7%9C%9F%E3%82%A2%E3%83%96%E3%82%B9%E3%83%88.pdf
-# 入れ方
-前提として，サーバにUbuntu 20.04.3 LTS がインストールされている必要がある．
+## About Laravel
 
-以下にその後の手順を示す．
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## パッケージを更新して日本語環境にする．
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-sudo apt update && sudo apt upgrade -y
+## Learning Laravel
 
-sudo apt install language-pack-ja-base language-pack-ja ibus-mozc -y
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-localectl set-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-source /etc/default/locale
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## 必要なリポジトリとzip，unzip を追加する
+## Laravel Sponsors
 
-sudo add-apt-repository ppa:ondrej/php -y
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-sudo apt update && sudo apt upgrade -y
+### Premium Partners
 
-sudo apt install software-properties-common zip unzip -y
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
-## Apache2 とphp8.0 と必要と必要なライブラリをインストールする．
+## Contributing
 
-sudo apt install apache2
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-sudo apt install php8.0-mysql php-common php8.0-common php8.0 php8.0-mbstring
+## Code of Conduct
 
-php-json php8.0-bcmath php8.0-xml php8.0-zip -y
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Web サーバ公開に必要なファイヤーウォールルールを追加する．
+## Security Vulnerabilities
 
-sudo ufw enable -y
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-sudo ufw allow 22
+## License
 
-sudo ufw allow 'Apache'
-
-## MySQL をインストール
-
-sudo apt-get install mysql-server mysql-client -y
-
-## MySQL にroot でログイン
-
-mysql -u root -p
-
-## Laravel 用のDB”laravel_sotuken”とローカル専用ユーザ”Laravel”を作成する．そして，ユーザに追加したDB の全権限を付与する．
-
-create database laravel_sotuken;
-
-SELECT user, host, plugin FROM mysql.user;
-
-CREATE USER laravel@localhost IDENTIFIED WITH mysql_native_password BY
-'W4t7xQTuGL5w';
-
-SELECT user, host, plugin FROM mysql.user;
-
-grant all privileges on laravel_sotuken.* to 'laravel'@'localhost';
-
-quit;
-
-## Apache のファイルを設定するために，apache のディレクトリに移動．
-
-cd /etc/apache2/
-
-### apache2.conf を編集する．
-
-vi apache2.conf
-
-#### 以下の内容を追加する．
-
-<Directory /var/www/html/ Design-compare-System/public>
-
-Options Indexes FollowSymLinks
-
-AllowOverride All
-
-\# Allow open access:
-
-Require all granted
-
-</Directory>
-
-## Web サーバのドキュメントルートを変更する．
-
-cd sites-available
-
-vi 000-default.conf
-
-### \#DocumentRoot を以下のように変更する．
-
-DocumentRoot /var/www/html/ Design-compare-System/public
-
-## Laravel に必要な設定を追加し，apache を再起動する．
-
-sudo a2enmod rewrite
-
-sudo service apache2 restart
-
-## Apache の設定が終わったので，home ディレクトリからドキュメントルートに移動できる
-ように，シンボリックリンクを作成する．そのまま，カレントディレクトリをドキュメント
-ルートにする．
-
-cd
-
-ln -s /var/www apache
-
-cd apache/html
-
-## Laravel をインストールするためにcomposer をダウンロードして，bin に移動しておく．
-
-curl -sS https://getcomposer.org/installer | php
-
-mv ./composer.phar /usr/local/bin/composer
-
-## ソースコードをgit からダウンロードするか，パソコンから持ってくるかして，カレントデ
-ィレクトリに用意する．
-
-git clone https://github.com/kazmaItooou/Design-compare-System.git
-
-## Laravel のディレクトリに移動する．以降はLaravel のディレクトリで作業する．
-
-cd g-research-ep/
-
-## Ubuntu 環境ではこのまま動かすことができないので，権限を付与する．
-
-sudo chown -R $USER:www-data storage
-
-sudo chown -R $USER:www-data bootstrap/cache
-
-chmod -R 777 storage
-
-chmod -R 777 bootstrap/cache
-
-## Ubuntu 環境ではこのまま動かすことができないので，.htaccess を編集する．
-
-cd public
-
-vi .htaccess
-
-＃以下を追加
-
-Options +FollowSymLinks -Indexes
-
-## composer でLaravel 本体をインストールする．
-
-composer install
-
-composer update
-
-## .env.example を元に，.env を追加する．
-
-cp .env.example .env
-
-vi .env
-
-### #編集内容は以下である．APP_URL はサーバに合わせる．
-
-APP_ENV=production
-
-APP_DEBUG=false
-
-APP_URL=http:// example.com/
-
-DB_DATABASE=laravel_sotuken
-
-DB_USERNAME=laravel
-
-DB_PASSWORD=W4t7xQTuGL5w
-
-## Laravel のキャッシュなどをクリアする．
-
-php artisan cache:clear; php artisan config:clear; php artisan route:clear; php artisan
-
-view:clear; composer dump-autoload
-
-## データベースにテーブルを追加するためにmigrate する．
-
-このコマンドを実行すると"/database/migrations" ディレクトリ内のテーブル追加プログラムが実行され，テーブルが自
-動で作られる．
-
-php artisan migrate
-
-終了．これで，URL を開くと比較システムのアンケート画面が表示される．
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

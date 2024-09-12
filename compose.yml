@@ -1,0 +1,60 @@
+services:
+  nginx:
+    container_name: dc_nginx
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      # ./srcフォルダをコンテナ内の/var/www/htmlにマウント
+      - ./:/src
+    # 依存関係を設定
+    depends_on:
+      - dc_app
+
+  # PHP-FPMの定義
+  dc_app:
+    container_name: dc_app
+    build:
+      context: ./docker/php
+      # Dockerfileのファイル名
+      dockerfile: Dockerfile
+    volumes:
+      # ./srcフォルダをコンテナ内の/var/www/htmlにマウント
+     - ./:/src
+
+  dc_mysql:
+    image: mysql:8.4.0
+    container_name: dc_mysql
+    platform: linux/amd64
+    # entrypoint: ["/bin/sh", "-c", "chown -R mysql:mysql /var/lib/mysql && exec mysqld"]
+    # command: /bin/sh -c "chown -R mysql:mysql /var/lib/mysql && mysqld"
+    # ALTER USER 'sotuken'@'%' IDENTIFIED WITH mysql_native_password BY 'sotuken';
+    # INSTALL PLUGIN mysql_native_password SONAME 'mysql_native_password.so';
+    volumes:
+      - ./docker/mysql/db:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=laravel_sotuken
+      - MYSQL_USER=sotuken
+      - MYSQL_PASSWORD=sotuken
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: dc_phpmyadmin
+    environment:
+      PMA_HOST: dc_mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+      PMA_PORT: 3306
+    ports:
+      - 8080:80
+    # networks:
+    #   - laravel_network
+    depends_on:
+      - dc_mysql
+  
