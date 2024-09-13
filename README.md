@@ -5,7 +5,34 @@ Laravel 6.20.36
 ## アブストラクト
 
 https://github.com/kazmaItooou/Design-compare-System/blob/main/ep18009%E4%BC%8A%E8%97%A4%E5%92%8C%E7%9C%9F%E3%82%A2%E3%83%96%E3%82%B9%E3%83%88.pdf
-# 入れ方
+
+# ローカル環境構築方法
+
+GitHubからクローン
+
+```
+git clone https://github.com/kazmaItooou/Design-compare-System.git
+```
+
+ディレクトリに移動する．以降ディレクトリで作業する．
+
+```
+cd Design-compare-System/
+```
+
+## Dockerコンテナに入って立ち上げる準備
+
+```
+docker-compose up -d --build
+docker exec -it dc_app bash
+composer install
+php artisan migrate
+```
+http://localhost/
+で画面が出て最後まで実験できれば完了
+
+
+# 本場環境導入方法
 前提として，サーバにUbuntu 20.04.3 LTS がインストールされている必要がある．
 
 以下にその後の手順を示す．
