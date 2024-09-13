@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AqController,
     QuestionController,
-    layoutAqController,
+    LayoutAqController,
     EndAqController,
     LayoutViewController
 };
@@ -35,8 +35,8 @@ Route::get('/事前アンケート終了', [AqController::class, 'aqProcesed']);
 Route::get('/テスト', [QuestionController::class, 'index']);
 Route::post('/テスト', [QuestionController::class, 'AnsProsessing']);
 
-Route::post('/テストアンケート', [layoutAqController::class, 'aqProcessing']);
-Route::get('/テストアンケート', [layoutAqController::class, 'aqProcessed']);
+Route::post('/テストアンケート', [LayoutAqController::class, 'aqProcessing']);
+Route::get('/テストアンケート', [LayoutAqController::class, 'aqProcessed']);
 
 
 Route::post('/終了アンケート', [EndAqController::class, 'aqProcessing']);

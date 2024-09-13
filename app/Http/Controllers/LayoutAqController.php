@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use AqController;
-class layoutAqController extends Controller
+class LayoutAqController extends Controller
 {
     // アンケート結果の処理
     public function aqProcessing() {
@@ -31,7 +31,7 @@ class layoutAqController extends Controller
         //file_put_contents($path, $jsonData);
         Storage::put($path, $jsonData);
 
-        return redirect()->action([layoutAqController::class, 'aqProcessed'], ['token' => $token,'layoutflag' => $layoutflag,'qpat' => $qpat]);
+        return redirect()->action([LayoutAqController::class, 'aqProcessed'], ['token' => $token,'layoutflag' => $layoutflag,'qpat' => $qpat]);
     }
 
     // 処理後、実験終了画面かbadlayout開始画面を出す
