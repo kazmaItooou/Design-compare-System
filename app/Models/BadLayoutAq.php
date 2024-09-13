@@ -9,9 +9,21 @@ class BadLayoutAq extends Model
 {
     use HasFactory;
     /**
+     * モデルに関連付けるテーブル
+     *
+     * @var string
+     */
+    protected $table = 'bad_layout_aq';
+    /**
      * テーブルに関連付ける主キー
      *
      * @var string
      */
     protected $primaryKey = 'token';
+
+    protected $guarded = [];
+
+    // __construct(){
+
+    // }
 }
