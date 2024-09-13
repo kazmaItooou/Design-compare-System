@@ -46,16 +46,10 @@ class LayoutAqController extends Controller
             $qpat--;
         }
 
-        $path = "./layoutOrder.json"; //レイアウト比較の順番
-        //レイアウト比較の順番の読み込み
-        $file = Storage::get($path);
-        $firstLayoutArray = json_decode($file, true);
-        $firstLayout = $firstLayoutArray['firstLayout'];
         $isfirst = false;
         $viewName = "";
-        if($layoutflag == $firstLayout){
-
-            if($firstLayout == "basic"){
+        if($layoutflag == config('constants.FIRST_LAYOUT')){
+            if(config('constants.FIRST_LAYOUT') == "basic"){
                 $viewName = "問題開始前画面bad";
             }else{
                 $viewName = "問題開始前画面basic";
