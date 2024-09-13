@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use App\Services\endAqService;
 class QuestionController extends Controller
 {
     // Indexページの表示
@@ -40,7 +41,7 @@ class QuestionController extends Controller
         $path = "./questions/pat" . $qpat . "_q" . $Qnum . ".json";//問題jsonのpath
         //変数初期化
         $question = "";//問
-        $choises = array();//選択肢
+        $choises = [];//選択肢
         $correctAns = 0;//正答
         $viewName= "";//表示するview
 
@@ -53,8 +54,7 @@ class QuestionController extends Controller
             $viewName = "テスト" . $layoutflag . "アンケート";
         }else{
             $viewName= "テスト";
-            $json = file_get_contents($path);
-            $json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+            $json = mb_convert_encoding(file_get_contents($path), 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
             $arr = json_decode($json,true);
 
             $question = $arr['question']['ask'];
@@ -124,7 +124,7 @@ class QuestionController extends Controller
             Storage::put($path, $jsonData);
         }
         $Qnum++;
-        return redirect()->action('QuestionController@index',
-        compact('token','Qnum','qpat','layoutflag','isSetflag'));
+        return redirect()->action([QuestionController::class, 'index'],
+            compact('token','Qnum','qpat','layoutflag','isSetflag'));
     }
 }
