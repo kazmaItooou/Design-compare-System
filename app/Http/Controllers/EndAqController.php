@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\{
 
 use App\Services\endAqService;
 
-class endAqController extends Controller
+class EndAqController extends Controller
 {
     // アンケート結果の処理
     public function aqProcessing() {
@@ -29,7 +29,7 @@ class endAqController extends Controller
         //file_put_contents($path, $jsonData);
         Storage::put($path, $jsonData);
 
-        return redirect()->action([endAqController::class, 'aqProcessed'], ['token' => $token]);
+        return redirect()->action([EndAqController::class, 'aqProcessed'], ['token' => $token]);
     }
 
     // 処理後、実験終了画面を出す

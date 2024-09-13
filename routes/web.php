@@ -5,7 +5,7 @@ use App\Http\Controllers\{
     AqController,
     QuestionController,
     layoutAqController,
-    endAqController,
+    EndAqController,
     LayoutViewController
 };
 
@@ -39,8 +39,8 @@ Route::post('/テストアンケート', [layoutAqController::class, 'aqProcessi
 Route::get('/テストアンケート', [layoutAqController::class, 'aqProcessed']);
 
 
-Route::post('/終了アンケート', [endAqController::class, 'aqProcessing']);
-Route::get('/終了アンケート', [endAqController::class, 'aqProcessed']);
+Route::post('/終了アンケート', [EndAqController::class, 'aqProcessing']);
+Route::get('/終了アンケート', [EndAqController::class, 'aqProcessed']);
 
 //レイアウトの見本
 Route::get('/layoutBad', [LayoutViewController::class, 'bad']);
