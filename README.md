@@ -26,6 +26,7 @@ cd Design-compare-System/
 docker-compose up -d --build
 docker exec -it dc_app bash
 composer install
+cp .env.example .env
 php artisan migrate
 ```
 http://localhost/
