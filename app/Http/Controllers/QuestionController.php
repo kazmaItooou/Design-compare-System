@@ -74,15 +74,14 @@ class QuestionController extends Controller
     }
 
     //post内容を回答処理
-    public function AnsProsessing() {
-        //POSTされたデータを変数に格納
-        $token = $_POST['token'];
-        $choise = $_POST['choise'];
-        $correctAns = $_POST['correctAns'];
-        $Qnum = $_POST['Qnum'];
-        $qpat = $_POST['qpat'];
-        $layoutflag = $_POST['layoutflag'];
-        $startTime = $_POST['startTime'];
+    public function AnsProsessing(Request $request) {
+        $token = $request->input('token');
+        $choise = $request->input('choise');
+        $correctAns = $request->input('correctAns');
+        $Qnum = $request->input('Qnum');
+        $qpat = $request->input('qpat');
+        $layoutflag = $request->input('layoutflag');
+        $startTime = $request->input('startTime');
 
         //問題回答にかかった時間を計算
         $endTime = microtime(true);
