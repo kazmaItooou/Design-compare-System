@@ -20,4 +20,4 @@ yarn-error.log
 
 #Docker
 /docker/mysql/db
-/docker/nginx/logs
+# /docker/nginx/logs
