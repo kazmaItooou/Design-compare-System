@@ -69,16 +69,11 @@ class endAqService
         $path = './MonitorAnser/' . $dir . '/' . $token . '.json';//問題jsonのpath
         $ansArray = json_decode(Storage::get($path), true);
 
-        $path = './layoutOrder.json'; //レイアウト比較の順番
-        //レイアウト比較の順番の読み込み
-        $firstLayoutArray = json_decode(Storage::get($path), true);
-        $firstLayout = $firstLayoutArray['firstLayout'];
-
         $testResults = [];
         foreach($ansArray as &$ans){
             $testResults[] = [
                 'token' => $token,
-                'first_layout' => $firstLayout,
+                'first_layout' => config('constants.FIRST_LAYOUT'),
                 'layout' => $layoutflag,
                 'qpat' => (int)$ans['qpattern'],
                 'qnum' => (int)$ans['qnumber'],

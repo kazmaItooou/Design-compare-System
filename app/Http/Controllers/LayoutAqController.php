@@ -4,34 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use AqController;
-class layoutAqController extends Controller
+
+class LayoutAqController extends Controller
 {
     // アンケート結果の処理
-    public function aqProcessing() {
-        $token = $_POST['token'];
-        $layoutflag = $_POST['layoutflag'];
-        $qpat = $_POST['qpat'];
-        $layoutflag = $_POST['layoutflag'];
+    public function aqProcessing(Request $request) {
+        $token = $request->input('token');
+        $layoutflag = $request->input('layoutflag');
+        $qpat = $request->input('qpat');
 
-        $strikingSymbol = $_POST['strikingSymbol'];
-        $usabilityNum = $_POST['usabilityNum'];
-        $positiveImpression = $_POST['positiveImpression'];
-        $negativeImpression = $_POST['negativeImpression'];
-        $otherImpression = $_POST['otherImpression'];
-        $AqDataArray = array(
+        $strikingSymbol = $request->input('strikingSymbol');
+        $usabilityNum = $request->input('usabilityNum');
+        $positiveImpression = $request->input('positiveImpression') ?? '';
+        $negativeImpression = $request->input('negativeImpression') ?? '';
+        $otherImpression = $request->input('otherImpression') ?? '';
+        $aqDataArray = [
             "strikingSymbol" => (int)$strikingSymbol,
             "usabilityNum" => (int)$usabilityNum,
             "positiveImpression" => $positiveImpression,
             "negativeImpression" => $negativeImpression,
             "otherImpression" => $otherImpression,
-        );
+        ];
         $path = "./MonitorAnser/enquete/" . $layoutflag . "/" . $token . ".json";
-        $jsonData = json_encode($AqDataArray);
-        //file_put_contents($path, $jsonData);
-        Storage::put($path, $jsonData);
+        Storage::put($path, json_encode($aqDataArray));
 
-        return redirect()->action([layoutAqController::class, 'aqProcessed'], ['token' => $token,'layoutflag' => $layoutflag,'qpat' => $qpat]);
+        return redirect()->action([LayoutAqController::class, 'aqProcessed'], ['token' => $token,'layoutflag' => $layoutflag,'qpat' => $qpat]);
     }
 
     // 処理後、実験終了画面かbadlayout開始画面を出す
@@ -46,16 +43,10 @@ class layoutAqController extends Controller
             $qpat--;
         }
 
-        $path = "./layoutOrder.json"; //レイアウト比較の順番
-        //レイアウト比較の順番の読み込み
-        $file = Storage::get($path);
-        $firstLayoutArray = json_decode($file, true);
-        $firstLayout = $firstLayoutArray['firstLayout'];
         $isfirst = false;
         $viewName = "";
-        if($layoutflag == $firstLayout){
-
-            if($firstLayout == "basic"){
+        if($layoutflag == config('constants.FIRST_LAYOUT')){
+            if(config('constants.FIRST_LAYOUT') == "basic"){
                 $viewName = "問題開始前画面bad";
             }else{
                 $viewName = "問題開始前画面basic";
