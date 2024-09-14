@@ -13,29 +13,25 @@ use App\Services\endAqService;
 class EndAqController extends Controller
 {
     // アンケート結果の処理
-    public function aqProcessing() {
-        $token = $_POST['token'];
-        $layoutflag = $_POST['layoutflag'];
-
-        $selectLayout = $_POST['selectedLayout'];
-        $reason = $_POST['reason'];
-        $AqDataArray = array(
+    public function aqProcessing(Request $request) {
+        $token = $request->input('token');
+        $layoutflag = $request->input('layoutflag');
+        $selectLayout = $request->input('selectedLayout');
+        $reason = $request->input('reason') ?? '';
+        $AqDataArray = [
             "selectLayout" => $selectLayout,
             "reason" => $reason,
+        ];
 
-        );
         $path = "./MonitorAnser/enquete/" . $layoutflag . "/" . $token . ".json";
-        $jsonData = json_encode($AqDataArray);
-        //file_put_contents($path, $jsonData);
-        Storage::put($path, $jsonData);
+        Storage::put($path, json_encode($AqDataArray));
 
         return redirect()->action([EndAqController::class, 'aqProcessed'], ['token' => $token]);
     }
 
     // 処理後、実験終了画面を出す
     public function aqProcessed(Request $request) {
-        $token =  $request['token'];
-
+        $token = $request['token'];
         DB::beginTransaction();
         try {
             endAqService::sendBeforeAq($token);
